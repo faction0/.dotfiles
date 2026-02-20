@@ -1,0 +1,25 @@
+[font]
+size = 14.0
+offset = {y = 2}
+
+[font.bold]
+family = "Commit Mono Nerd Font"
+style = "Heavy"
+
+[font.bold_italic]
+family = "Commit Mono Nerd Font"
+style = "Heavy Italic"
+
+[font.italic]
+family = "Commit Mono Nerd Font"
+style = "Medium Italic"
+
+[font.normal]
+family = "Commit Mono Nerd Font"
+style = "Medium"
+
+[window]
+    resize_increments=true
+
+[colors.primary]
+    background = "#1A1522"

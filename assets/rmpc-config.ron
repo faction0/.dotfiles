@@ -1,0 +1,186 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    address: "127.0.0.1:6600",
+    volume_step: 5,
+    scrolloff: 2,
+    max_fps: 60,
+    wrap_navigation: true,
+    theme: "main",
+    cache_dir: Some("/tmp/rmpc/cache"),
+    lyrics_dir: "~/Music/Lyrics",
+    status_update_interval_ms: 1000,
+    enable_mouse: true,
+    enable_config_hot_reload: true,
+    album_art: (
+        method: Auto,
+        max_size_px: (width: 0, height: 0),
+        vertical_align: Center,
+        horizontal_align: Center,
+    ),
+
+    keybinds: (
+        global: {
+            "q":       Quit,
+            "~":       ShowHelp,
+            "O":       ShowOutputs,
+            "I":       ShowCurrentSongInfo,
+            "<C-p>":   ShowDecoders,
+            ":":       CommandMode,
+            ".":       VolumeUp,
+            ",":       VolumeDown,
+            "p":       TogglePause,
+            "s":       Stop,
+            ">":       NextTrack,
+            "<":       PreviousTrack,
+            "<Right>": NextTab,
+            "<Tab>":   NextTab,
+            "<Left>":  PreviousTab,
+            "<S-Tab>": PreviousTab,
+            "1":       SwitchToTab("Queue"),
+            "2":       SwitchToTab("Directories"),
+            "3":       SwitchToTab("Artists"),
+            "4":       SwitchToTab("Album Artists"),
+            "5":       SwitchToTab("Albums"),
+            "6":       SwitchToTab("Playlists"),
+            "7":       SwitchToTab("Search"),
+            "z":       ToggleRepeat,
+            "x":       ToggleRandom,
+            "c":       ToggleSingle,
+            "f":       SeekForward,
+            "b":       SeekBack,
+        },
+        navigation: {
+            "<Up>":        Up,
+            "<Left>":        Left,
+            "<Down>":        Down,
+            "<Right>":        Right,
+            "<S-Up>":      PaneUp,
+            "<S-Down>":    PaneDown,
+            "<S-Left>":    PaneLeft,
+            "<S-Right>":   PaneRight,
+            "<C-u>":       UpHalf,
+            "N":           PreviousResult,
+            "a":           Add,
+            "A":           AddAll,
+            "r":           Rename,
+            "n":           NextResult,
+            "g":           Top,
+            "<Space>":     Select,
+            "G":           Bottom,
+            "<CR>":        Confirm,
+            "i":           FocusInput,
+            "J":           MoveDown,
+            "<C-d>":       DownHalf,
+            "/":           EnterSearch,
+            "<C-c>":       Close,
+            "<Esc>":       Close,
+            "K":           MoveUp,
+            "D":           Delete,
+            "B":           ShowInfo,
+            "<C-r>":       Rate(kind: Modal(values: [], custom: true, like: false), current: false),
+        },
+        queue: {
+            "D":           DeleteAll,
+            "<CR>":        Play,
+            "<C-s>":       Save,
+            "a":           AddToPlaylist,
+            "X":           Shuffle,
+            "d":           Delete,
+        },
+    ),
+    search: (
+        case_sensitive: false,
+        mode: Contains,
+        tags: [
+            (value: "any",         label: "Any Tag"),
+            (value: "artist",      label: "Artist"),
+            (value: "album",       label: "Album"),
+            (value: "albumartist", label: "Album Artist"),
+            (value: "title",       label: "Title"),
+        ],
+    ),
+    
+    tabs: [
+        (name: "Home",pane: Split(direction: Vertical, panes: [
+                    (size: "50%", pane: Split(direction: Horizontal, panes: [
+                                (size: "62%", borders: "ALL", pane: Pane(Queue)),
+                                (size: "20%", borders: "ALL", pane: Pane(Lyrics)),
+                                (size: "18%", borders: "ALL", pane: Pane(AlbumArt)),
+                            ])
+                    ),
+                    (size: "50%", borders: "ALL", pane: Pane(Cava)),
+                ])
+        ),
+        (name: "Queue", pane: Split(direction: Horizontal, panes: [
+                    (size: "70%", borders: "NONE", pane: Split(direction: Vertical,panes: [
+                                (size: "3", borders: "ALL", pane: Component("custom_song_table_header")),
+                                (size: "100%", borders: "ALL", pane: Pane(Queue)),
+                            ])
+                    ),
+                    (size: "30%", borders: "NONE", pane: Split(direction: Vertical, panes: [
+                                (size: "0.45r", borders: "ALL", pane: Pane(AlbumArt)),
+                                (size: "100%", borders: "NONE", pane: Pane(Lyrics)),
+                            ])
+                    ),
+                ])
+        ),
+        (name: "Directories", pane: Split(direction: Horizontal,panes: [
+                    (size: "100%", borders: "ALL", pane: Pane(Directories)),
+                ])
+        ),
+        (name: "Playlists", pane: Split(direction: Horizontal, panes: [
+                    (size: "100%", borders: "ALL", pane: Pane(Playlists)),
+                ])
+        ),
+        (name: "Artists", pane: Split(direction: Horizontal, panes: [
+                    (size: "100%", borders: "ALL", pane: Pane(Artists)),
+                ])
+        ),
+        (name: "Albums", pane: Split(direction: Horizontal, panes: [
+                    (size: "100%", borders: "ALL", pane: Pane(Albums)),
+                ])
+        ),
+        
+        (name: "Search", pane: Split(direction: Horizontal, panes: [
+                    (size: "100%", borders: "ALL", pane: Pane(Search)),
+                ])
+        ),
+    ],
+    cava: (
+        framerate: 60, autosens: true, sensitivity: 100,
+        lower_cutoff_freq: 50, higher_cutoff_freq: 10000,
+        live_config: 1,
+        input: (
+            method: Pipewire,
+            source: "auto",
+            sample_rate: 44100,
+            channels: 1,
+            samble_bits: 16,
+        ),
+        smoothing: (
+            noise_reduction: 11,
+            monstercat: true,
+        ),
+        eq: [
+            1.5,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+        ],
+    ),
+)
