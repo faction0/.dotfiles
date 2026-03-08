@@ -1,0 +1,168 @@
+[
+  {
+    "settings": {
+      "disableAll": false,
+      "exposeIframes": false,
+      "exposeStyleName": false,
+      "keepAlive": 0,
+      "keepAliveIdle": false,
+      "newStyleAsUsercss": false,
+      "openEditInWindow": false,
+      "openEditInWindow.popup": false,
+      "patchCsp": false,
+      "show-badge": true,
+      "styleViaASS": false,
+      "styleViaXhr": false,
+      "urlInstaller": true,
+      "windowPosition": {},
+      "compactWidth": 850,
+      "config.autosave": true,
+      "schemeSwitcher.enabled": "system",
+      "schemeSwitcher.nightStart": "18:00",
+      "schemeSwitcher.nightEnd": "06:00",
+      "popup.enabledFirst": true,
+      "popup.stylesFirst": true,
+      "popup.autoResort": false,
+      "popup.borders": false,
+      "popup.findSort": "w",
+      "manage.onlyEnabled": false,
+      "manage.onlyLocal": false,
+      "manage.onlyUsercss": false,
+      "manage.onlyEnabled.invert": false,
+      "manage.onlyLocal.invert": false,
+      "manage.onlyUsercss.invert": false,
+      "manage.actions.expanded": false,
+      "manage.backup.expanded": true,
+      "manage.filters.expanded": true,
+      "manage.links.expanded": true,
+      "manage.minColumnWidth": 750,
+      "manage.newUI": true,
+      "manage.newUI.favicons": true,
+      "manage.newUI.faviconsGray": false,
+      "manage.newUI.targets": 3,
+      "manage.newUI.sort": "title,asc",
+      "manage.searchMode": "meta",
+      "editor.options": {},
+      "editor.toc.expanded": true,
+      "editor.options.expanded": true,
+      "editor.options.style.expanded": false,
+      "editor.lint.expanded": true,
+      "editor.publish.expanded": true,
+      "editor.lineWrapping": true,
+      "editor.smartIndent": true,
+      "editor.indentWithTabs": false,
+      "editor.tabSize": 4,
+      "editor.keyMap": "default",
+      "editor.theme": "default",
+      "editor.beautify": {
+        "selector_separator_newline": true,
+        "newline_before_open_brace": false,
+        "newline_after_open_brace": true,
+        "newline_between_properties": true,
+        "newline_before_close_brace": true,
+        "newline_between_rules": false,
+        "preserve_newlines": true,
+        "end_with_newline": false,
+        "indent_conditional": true,
+        "indent_mozdoc": true,
+        "space_around_combinator": true,
+        "space_around_cmp": false
+      },
+      "editor.beautify.hotkey": "",
+      "editor.lintDelay": 300,
+      "editor.linter": "csslint",
+      "editor.lintReportDelay": 500,
+      "editor.matchHighlight": "token",
+      "editor.autoCloseBrackets": true,
+      "editor.autocompleteOnTyping": false,
+      "editor.contextDelete": false,
+      "editor.selectByTokens": true,
+      "editor.arrowKeysTraverse": true,
+      "editor.appliesToLineWidget": true,
+      "editor.autosaveDraft": 10,
+      "editor.livePreview": true,
+      "editor.livePreview.delay": 0.2,
+      "editor.targetsFirst": true,
+      "editor.colorpicker": true,
+      "editor.colorpicker.hexUppercase": false,
+      "editor.colorpicker.hotkey": "",
+      "editor.colorpicker.color": "#666",
+      "editor.colorpicker.maxHeight": 0,
+      "hotkey._execute_browser_action": "",
+      "hotkey.openManage": "",
+      "hotkey.styleDisableAll": "",
+      "sync.enabled": "none",
+      "iconset": -1,
+      "badgeDisabled": "#8B0000",
+      "badgeNormal": "#006666",
+      "headerWidth.edit": 280,
+      "headerWidth.install": 280,
+      "headerWidth.manage": 280,
+      "popup.search.globals": false,
+      "popupWidth": 246,
+      "popupWidthMax": 280,
+      "updateInterval": 24,
+      "updateOnlyEnabled": false
+    },
+    "order": {
+      "main": [
+        "39dacb94-606f-4903-86bc-3b2ce12733e1"
+      ],
+      "prio": [
+        "1aa87b0c-ca21-4f46-b3d7-45f87880bf60",
+        "de61450d-3393-4b82-93c6-01b74053eb96"
+      ]
+    }
+  },
+  {
+    "enabled": true,
+    "installDate": 1772021152079,
+    "name": "rym global",
+    "sections": [
+      {
+        "code": ":root {\n    --background-eve: #262626;\n}\n\n#page_header {\n    background: #333\n}\n\n#page_header a.main.header_item.sonemic {\n    background: #333  \n}\n\n.ui_search {\n    background: #262626\n    \n}\n\n/* sub-background for things like account settings */\n#mediumForm fieldset {\n    background-color: #333\n}\n\n\nfieldset h4 {\n  color: #fff !important;\n}\n\n\nfieldset label textarea#notifymessage {\n    background: #262626\n}\n\nfieldset label select {\n    background: #262626\n}\n\n#profile_tab ul li#currentp {\n    color: #cecece !important;\n    \n}\n\na {\n    color: #a6a6a6 !important;\n}\n\na:hover {\n    color: #666 !important;\n}",
+        "urlPrefixes": [
+          "https://rateyourmusic.com"
+        ]
+      }
+    ],
+    "updateDate": 1772052319543,
+    "_id": "39dacb94-606f-4903-86bc-3b2ce12733e1",
+    "_rev": 1772052319543,
+    "id": 1
+  },
+  {
+    "enabled": true,
+    "installDate": 1772052253995,
+    "name": "rym specific 1",
+    "sections": [
+      {
+        "code": "\nfieldset h4:first-of-type {\n  display:none;\n}\n\nfieldset div:first-of-type {\n  display:none;\n}",
+        "urls": [
+          "https://rateyourmusic.com/account/preferences"
+        ]
+      }
+    ],
+    "updateDate": 1772052315630,
+    "_id": "1aa87b0c-ca21-4f46-b3d7-45f87880bf60",
+    "_rev": 1772052315630,
+    "id": 2
+  },
+  {
+    "enabled": true,
+    "installDate": 1772052638697,
+    "name": "rym specific 2",
+    "sections": [
+      {
+        "code": ".newreleases_stat.newreleases_avg_rating_stat {\n    -webkit-text-fill-color: #fff;\n    background: transparent\n}",
+        "urls": [
+          "https://rateyourmusic.com/"
+        ]
+      }
+    ],
+    "updateDate": 1772053497274,
+    "_id": "de61450d-3393-4b82-93c6-01b74053eb96",
+    "_rev": 1772053497274,
+    "id": 3
+  }
+]

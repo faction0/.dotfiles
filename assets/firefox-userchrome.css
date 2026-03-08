@@ -78,12 +78,6 @@
   display: none !important;
 }
 
-/* extensions */
-#unified-extensions-button {
-  display: none !important;
-}
-
-
 .tab-close-button {
   display: none !important;
 }
@@ -106,15 +100,15 @@
 }
 
 :root {
-  --focus-outline-color: #925DFF !important;
+  --focus-outline-color: #f0f0f0 !important;
 }
 
 /* Bring back tab separator lines that were removed in Proton */
 .tabbrowser-tab{
   background-image: linear-gradient(
     transparent 20%,
-    #634f80 20%,
-    #30263E 80%,
+    #9e9e9e 20%,
+    #696969 80%,
     transparent 80%
   );
   background-size: 1px 100%;

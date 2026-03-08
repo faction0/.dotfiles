@@ -1,18 +1,18 @@
 set $mod Mod4
 
 # class                 border  bground text    indicator child_border
-client.focused          #603DA8 #603DA8 #F8F1FF #2E9EF4   #603DA8
-client.focused_inactive #422A74 #422A74 #EAE3F0 #484E50   #422A74
-client.unfocused        #422A74 #422A74 #EAE3F0 #292D2E   #422A74
+client.focused          #616161 #616161 #f0f0f0 #aaaaaa   #616161
+client.focused_inactive #121212 #121212 #626262 #343434   #121212
+client.unfocused        #121212 #121212 #626262 #343434   #121212
 client.urgent           #7F58D3 #7F58D3 #FFFFFF #900000   #7F58D3
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
-client.background       #FFFFFF
+client.background       #000000
 
-exec_always --no-startup-id feh --bg-scale ~/.dotfiles/assets/wallpaper.jpg
+exec_always --no-startup-id feh --bg-scale ~/.dotfiles/assets/wallpaper.png
 
 exec setxkbmap us -variant intl
-exec setxkbmap us -variant intl
+exec xrandr --output HDMI-0 --mode 2560x1080 --rate 74.99
 
 font pango:0xProto Nerd Font Mono 10
 
@@ -32,6 +32,8 @@ bindsym $mod+Control+e exec --no-startup-id alacritty -e nnn
 
 bindsym $mod+equal exec --no-startup-id i3lock -fei ~/.dotfiles/assets/wallpaper-locked.png
 bindsym $mod+l exec --no-startup-id dunstctl close-all
+bindsym $mod+Control+v exec --no-startup-id xclip -selection clipboard -out | xdotool selectwindow windowfocus type --delay 1 --clearmodifiers --window %@ --file -
+bindsym $mod+Control+s exec --no-startup-id flameshot gui
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -69,7 +71,6 @@ bindsym $mod+d workspace d
 bindsym $mod+z workspace z
 bindsym $mod+x workspace x
 bindsym $mod+c workspace c
-
 
 # move focused container to workspace
 bindsym $mod+Shift+a move container to workspace a

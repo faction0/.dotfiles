@@ -22,4 +22,11 @@ style = "Medium"
     resize_increments=true
 
 [colors.primary]
-    background = "#1A1522"
+    background = "#181818"
+
+
+[keyboard]
+    bindings = [
+        {key = "-", mods = "Control", action = "DecreaseFontSize"},
+        {key = "=", mods = "Control", action = "IncreaseFontSize"}
+    ]    

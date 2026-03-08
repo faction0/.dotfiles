@@ -127,6 +127,8 @@ firefox_config() {
 
     rm "$HOME/Downloads/firefox-theme-success"
 
+    xdg-settings set default-web-browser firefox.desktop
+
     DI_FIREFOX_CONFIG_OKAY=1
     save_progress
 
@@ -148,7 +150,7 @@ config_link() {
     link_function "${SCRIPT_DIR}/assets/i3-conf.sh" "$HOME/.config/i3/config"
     link_function "${SCRIPT_DIR}/assets/alacritty-conf.toml" "$HOME/.config/alacritty/alacritty.toml"
     link_function "${SCRIPT_DIR}/assets/bash-config.sh" "$HOME/.bashrc"
-    link_function "${SCRIPT_DIR}/assets/dunst-config" "$HOME/.config/dunst/dunstrc"
+    link_function "${SCRIPT_DIR}/assets/dunst-config.ini" "$HOME/.config/dunst/dunstrc"
     link_function "${SCRIPT_DIR}/assets/tmux-conf.conf" "$HOME/.tmux.conf"
     link_function "${SCRIPT_DIR}/assets/mpd-conf.conf" "$HOME/.config/mpd/mpd.conf"
     link_function "${SCRIPT_DIR}/assets/rmpc-config.ron" "$HOME/.config/rmpc/config.ron"
@@ -190,5 +192,4 @@ git_config() {
 }
 
 [[ $DI_GIT_CONFIG_OKAY -eq 1 ]] || git_config
-
 
