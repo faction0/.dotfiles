@@ -70,13 +70,11 @@ yogurt() {
     yay_or_fail "portmaster"  "portmaster-bin"
     yay_or_fail "vscodium"    "vscodium-bin"
     yay_or_fail "vesktop"     "vesktop-bin"
-    yay_or_fail "pwvucontrol" "pwvucontrol"
     yay_or_fail "brave"       "brave-bin"
 
-    if ! command -v "com.valvesoftware.Steam" > /dev/null; then
-
-    flatpak install flathub com.valvesoftware.Steam
-    if ! command -v "$cmd" >/dev/null; then
+    if ! command -v "com.saivert.pwvucontrol" > /dev/null; then
+        flatpak install com.saivert.pwvucontrol || die
+        command -v "com.saivert.pwvucontrol" >/dev/null || die
 
     yay -S --needed nvidia-580xx-utils nvidia-580xx-dkms nvidia-580xx-settings lib32-nvidia-580xx-utils
 
