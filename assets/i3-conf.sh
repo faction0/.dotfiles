@@ -11,8 +11,7 @@ client.background       #000000
 
 exec_always --no-startup-id feh --bg-scale ~/.dotfiles/assets/wallpaper.png
 
-exec setxkbmap us -variant intl
-exec xrandr --output HDMI-0 --mode 2560x1080 --rate 74.99
+exec --no-startup-id setxkbmap us -variant intl
 
 font pango:0xProto Nerd Font Mono 10
 

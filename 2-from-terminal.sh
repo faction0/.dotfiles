@@ -1,6 +1,5 @@
 #!/bin/bash
 
-DI_FONT_LINK_OKAY=0
 DI_YOGURT_OKAY=0
 DI_FIREFOX_CONFIG_OKAY=0
 DI_CONFIG_LINK_OKAY=0
@@ -17,7 +16,6 @@ load_progress() {
 
 save_progress() {
     cat > dotfiles_info.cfg <<EOF
-DI_FONT_LINK_OKAY=$DI_FONT_LINK_OKAY
 DI_YOGURT_OKAY=$DI_YOGURT_OKAY
 DI_FIREFOX_CONFIG_OKAY=$DI_FIREFOX_CONFIG_OKAY
 DI_CONFIG_LINK_OKAY=$DI_CONFIG_LINK_OKAY
@@ -29,43 +27,14 @@ EOF
 load_progress
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+ASS_DIR="${SCRIPT_DIR}/assets"
 
-link_function() {
-    local src="$1"
-    local dst="$2"
-    local use_sudo=""
-
-    [[ -n $3 ]] && use_sudo="sudo"
-
-    $use_sudo ln -s "$src" link.tmp
-    $use_sudo mv -Tf link.tmp "$dst"
-
-    [[ "$($use_sudo readlink -f "$dst")" == "$(readlink -f "$src")" ]] || die
-}
 
 die() {
     echo "Error at line ${BASH_LINENO[0]}"
     save_progress
     exit
 }
-
-font_link() {
-    echo "======== linking fonts ========"
-    DI_FONT_LINK_OKAY=0
-
-    7z x "${SCRIPT_DIR}/assets/0xProto.7z" "-o${SCRIPT_DIR}/assets/"
-    7z x "${SCRIPT_DIR}/assets/CommitMono.7z" "-o${SCRIPT_DIR}/assets/"
-
-    link_function "${SCRIPT_DIR}/assets/0xProto" "/usr/share/fonts/0xProto" "yes"
-    link_function "${SCRIPT_DIR}/assets/CommitMono" "/usr/share/fonts/CommitMono" "yes"
-
-    DI_FONT_LINK_OKAY=1
-    save_progress
-
-    echo -e "okay\n"
-}
-
-[[ $DI_FONT_LINK_OKAY -eq 1 ]] || font_link  
 
 yogurt() {
     echo "======== yogurt ========" # yo gurt
@@ -85,17 +54,31 @@ yogurt() {
         command -v yay >/dev/null || die
     fi
 
-    if ! command -v portmaster >/dev/null; then
-        yay -S portmaster-bin
+    yay_or_fail() {
+    while [ $# -gt 0 ]; do
+        cmd="$1"
+        pkg="$2"
+        shift 2
 
-        command -v portmaster >/dev/null || die
-    fi
+        if ! command -v "$cmd" >/dev/null; then
+            yay -S --needed "$pkg" || die 
+            command -v "$cmd" >/dev/null || die
+        fi
+        done
+    }
 
-    if ! command -v vscodium >/dev/null; then
-        yay -S vscodium-bin
+    yay_or_fail "portmaster"  "portmaster-bin"
+    yay_or_fail "vscodium"    "vscodium-bin"
+    yay_or_fail "vesktop"     "vesktop-bin"
+    yay_or_fail "pwvucontrol" "pwvucontrol"
+    yay_or_fail "brave"       "brave-bin"
 
-        command -v vscodium >/dev/null || die
-    fi
+    if ! command -v "com.valvesoftware.Steam" > /dev/null; then
+
+    flatpak install flathub com.valvesoftware.Steam
+    if ! command -v "$cmd" >/dev/null; then
+
+    yay -S --needed nvidia-580xx-utils nvidia-580xx-dkms nvidia-580xx-settings lib32-nvidia-580xx-utils
 
     DI_YOGURT_OKAY=1
     save_progress
@@ -117,11 +100,11 @@ firefox_config() {
     local profile_path="${HOME}/.mozilla/firefox/${profile_name}"
 
     mkdir -p "$profile_path/chrome"
-    link_function "${SCRIPT_DIR}/assets/firefox-userchrome.css" "$profile_path/chrome/userChrome.css"
-    link_function "${SCRIPT_DIR}/assets/firefox-userjs.js" "$profile_path/user.js"
+    cp "${SCRIPT_DIR}/assets/firefox-userchrome.css" "$profile_path/chrome/userChrome.css"
+    cp "${SCRIPT_DIR}/assets/firefox-userjs.js" "$profile_path/user.js"
 
     echo 'follow instructions'
-    firefox "${SCRIPT_DIR}/assets/firefox-color.html"
+    firefox "${SCRIPT_DIR}/assets/firefox-config.html"
 
     [[ -f "$HOME/Downloads/firefox-theme-success" ]] || die
 
@@ -141,20 +124,23 @@ config_link() {
     echo '======== config linking ========'
     DI_CONFIG_LINK_OKAY=0
 
+    mkdir -p ~/.config/i3
     mkdir -p ~/.config/alacritty
-    mkdir -p ~/.config/dunst/
+    mkdir -p ~/.config/dunst
     mkdir -p ~/.config/mpd
     mkdir -p ~/.config/rmpc
     mkdir -p ~/.config/rmpc/themes
+    mkdir -p ~/.config/gtk-3.0
 
-    link_function "${SCRIPT_DIR}/assets/i3-conf.sh" "$HOME/.config/i3/config"
-    link_function "${SCRIPT_DIR}/assets/alacritty-conf.toml" "$HOME/.config/alacritty/alacritty.toml"
-    link_function "${SCRIPT_DIR}/assets/bash-config.sh" "$HOME/.bashrc"
-    link_function "${SCRIPT_DIR}/assets/dunst-config.ini" "$HOME/.config/dunst/dunstrc"
-    link_function "${SCRIPT_DIR}/assets/tmux-conf.conf" "$HOME/.tmux.conf"
-    link_function "${SCRIPT_DIR}/assets/mpd-conf.conf" "$HOME/.config/mpd/mpd.conf"
-    link_function "${SCRIPT_DIR}/assets/rmpc-config.ron" "$HOME/.config/rmpc/config.ron"
-    link_function "${SCRIPT_DIR}/assets/rmpc-theme.ron" "$HOME/.config/rmpc/themes/main.ron"
+    cp "${ASS_DIR}/i3-conf.sh"          "$HOME/.config/i3/config"
+    cp "${ASS_DIR}/alacritty-conf.toml" "$HOME/.config/alacritty/alacritty.toml"
+    cp "${ASS_DIR}/bash-config.sh"      "$HOME/.bashrc"
+    cp "${ASS_DIR}/dunst-config.ini"    "$HOME/.config/dunst/dunstrc"
+    cp "${ASS_DIR}/tmux-conf.conf"      "$HOME/.tmux.conf"
+    cp "${ASS_DIR}/mpd-conf.conf"       "$HOME/.config/mpd/mpd.conf"
+    cp "${ASS_DIR}/rmpc-config.ron"     "$HOME/.config/rmpc/config.ron"
+    cp "${ASS_DIR}/rmpc-theme.ron"      "$HOME/.config/rmpc/themes/main.ron"
+    cp "${ASS_DIR}/gtk-settings.ini"    "$HOME/.config/gtk-3.0/settings.ini"
 
     DI_CONFIG_LINK_OKAY=1
     save_progress
@@ -192,4 +178,6 @@ git_config() {
 }
 
 [[ $DI_GIT_CONFIG_OKAY -eq 1 ]] || git_config
+
+
 
