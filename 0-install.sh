@@ -36,7 +36,8 @@ pacstrap -K /mnt base base-devel linux linux-firmware linux-headers \
     networkmanager dunst xdg-desktop-portal-gnome\
     libreoffice-still gimp rofi \
     feh nemo nnn neovim \
-    flatpak locate steam
+    flatpak locate \
+    xorg-server xorg-xinit xorg-xrandr xorg-xinput xorg-xkill i3
 
 echo "======== genfstab ========"
 genfstab -U /mnt > /mnt/etc/fstab

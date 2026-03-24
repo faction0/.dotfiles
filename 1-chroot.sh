@@ -24,8 +24,8 @@ cp -r $DF_DIR /home/faction/
 chown -hR faction /home/faction/.dotfiles
 
 echo "======== copying root files ========"
-cp "${$DF_ASS}/grub-default.cfg" /etc/default/grub
-cp "${$DF_ASS}/timesyncd.conf"   /etc/systemd/timesyncd.conf
+cp "${DF_ASS}/grub-default.cfg" /etc/default/grub
+cp "${DF_ASS}/timesyncd.conf"   /etc/systemd/timesyncd.conf
 
 7z x "${DF_ASS}/0xProto.7z"    "-o/usr/share/fonts/"
 7z x "${DF_ASS}/CommitMono.7z" "-o/usr/share/fonts/"
@@ -33,7 +33,7 @@ cp "${$DF_ASS}/timesyncd.conf"   /etc/systemd/timesyncd.conf
 echo "======== setting up grub ========"
 
 mkdir -p /boot/EFI/Arch
-grub-install --target=86_64-efi --efi-directory=/boot --bootloader-id=Arch
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch
 grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "======== setting up localtime ========"
@@ -43,7 +43,7 @@ timedatectl set-ntp true
 
 echo "======== misc ========"
 
-cp -v "${$DF_ASS}/pacman.conf" /etc/pacman.conf
+cp -v "${DF_ASS}/pacman.conf" /etc/pacman.conf
 
 echo "type hostname"
 read i_hostname

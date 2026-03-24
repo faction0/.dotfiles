@@ -53,30 +53,8 @@ yogurt() {
 
         command -v yay >/dev/null || die
     fi
-
-    yay_or_fail() {
-    while [ $# -gt 0 ]; do
-        cmd="$1"
-        pkg="$2"
-        shift 2
-
-        if ! command -v "$cmd" >/dev/null; then
-            yay -S --needed "$pkg" || die 
-            command -v "$cmd" >/dev/null || die
-        fi
-        done
-    }
-
-    yay_or_fail "portmaster"  "portmaster-bin"
-    yay_or_fail "vscodium"    "vscodium-bin"
-    yay_or_fail "vesktop"     "vesktop-bin"
-    yay_or_fail "brave"       "brave-bin"
-
-    if ! command -v "com.saivert.pwvucontrol" > /dev/null; then
-        flatpak install com.saivert.pwvucontrol || die
-        command -v "com.saivert.pwvucontrol" >/dev/null || die
-
-    yay -S --needed nvidia-580xx-utils nvidia-580xx-dkms nvidia-580xx-settings lib32-nvidia-580xx-utils
+    
+    yay -S --needed "portmaster-bin vscodium-bin vesktop-bin brave-bin nvidia-580xx-utils nvidia-580xx-dkms nvidia-580xx-settings lib32-nvidia-580xx-utils"
 
     DI_YOGURT_OKAY=1
     save_progress
