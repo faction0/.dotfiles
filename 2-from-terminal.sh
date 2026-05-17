@@ -1,10 +1,11 @@
 #!/bin/bash
 
 DI_YOGURT_OKAY=0
-DI_FIREFOX_CONFIG_OKAY=0
+DI_WATERFOX_CONFIG_OKAY=0
 DI_CONFIG_LINK_OKAY=0
 DI_SERVICE_ENABLING_OKAY=0
 DI_GIT_CONFIG_OKAY=0
+DI_EXTRA_PACK_OKAY=0
 
 load_progress() {
     if [[ ! -f dotfiles_info.cfg ]]; then
@@ -17,10 +18,11 @@ load_progress() {
 save_progress() {
     cat > dotfiles_info.cfg <<EOF
 DI_YOGURT_OKAY=$DI_YOGURT_OKAY
-DI_FIREFOX_CONFIG_OKAY=$DI_FIREFOX_CONFIG_OKAY
+DI_WATERFOX_CONFIG_OKAY=$DI_WATERFOX_CONFIG_OKAY
 DI_CONFIG_LINK_OKAY=$DI_CONFIG_LINK_OKAY
 DI_SERVICE_ENABLING_OKAY=$DI_SERVICE_ENABLING_OKAY
 DI_GIT_CONFIG_OKAY=$DI_GIT_CONFIG_OKAY
+DI_EXTRA_PACK_OKAY=$DI_EXTRA_PACK_OKAY
 EOF
 }
 
@@ -54,7 +56,8 @@ yogurt() {
         command -v yay >/dev/null || die
     fi
     
-    yay -S --needed "portmaster-bin vscodium-bin vesktop-bin brave-bin nvidia-580xx-utils nvidia-580xx-dkms nvidia-580xx-settings lib32-nvidia-580xx-utils"
+    yay -S --needed portmaster-bin vscodium-bin vesktop-bin brave-bin \
+        nvidia-580xx-utils nvidia-580xx-dkms nvidia-580xx-settings lib32-nvidia-580xx-utils
 
     DI_YOGURT_OKAY=1
     save_progress
@@ -65,36 +68,34 @@ yogurt() {
 [[ $DI_YOGURT_OKAY -eq 1 ]] || yogurt  
 
 
-firefox_config() {
-    echo '======== firefox theme ========'
-    DI_FIREFOX_CONFIG_OKAY=0
+waterfox_config() {
+    echo '======== waterfox ========'
+    DI_WATERFOX_CONFIG_OKAY=0
 
-    echo 'quit firefox'
-    firefox
+    echo 'quit waterfox'
+    waterfox
     
-    local profile_name="$(grep -m1 '^Default=' ${HOME}/.mozilla/firefox/profiles.ini | cut -d= -f2)"
-    local profile_path="${HOME}/.mozilla/firefox/${profile_name}"
+    local profile_name="$(grep -m1 '^Default=' ${HOME}/.waterfox/profiles.ini | cut -d= -f2)"
+    local profile_path="${HOME}/.waterfox/${profile_name}"
 
     mkdir -p "$profile_path/chrome"
-    cp "${SCRIPT_DIR}/assets/firefox-userchrome.css" "$profile_path/chrome/userChrome.css"
-    cp "${SCRIPT_DIR}/assets/firefox-userjs.js" "$profile_path/user.js"
+    cp "${SCRIPT_DIR}/assets/waterfox-userchrome.css" "$profile_path/chrome/userChrome.css"
+    cp "${SCRIPT_DIR}/assets/waterfox-userjs.js" "$profile_path/user.js"
 
     echo 'follow instructions'
-    firefox "${SCRIPT_DIR}/assets/firefox-config.html"
+    waterfox "${SCRIPT_DIR}/assets/waterfox-config.html"
 
-    [[ -f "$HOME/Downloads/firefox-theme-success" ]] || die
+    [[ -f "$HOME/Downloads/waterfox-theme-success" ]] || die
 
-    rm "$HOME/Downloads/firefox-theme-success"
+    rm "$HOME/Downloads/waterfox-theme-success"
 
-    xdg-settings set default-web-browser firefox.desktop
-
-    DI_FIREFOX_CONFIG_OKAY=1
+    DI_WATERFOX_CONFIG_OKAY=1
     save_progress
 
     echo -e "okay\n"
 }
 
-[[ $DI_FIREFOX_CONFIG_OKAY -eq 1 ]] || firefox_config  
+[[ $DI_WATERFOX_CONFIG_OKAY -eq 1 ]] || waterfox_config  
 
 config_link() {
     echo '======== config linking ========'
@@ -107,6 +108,7 @@ config_link() {
     mkdir -p ~/.config/rmpc
     mkdir -p ~/.config/rmpc/themes
     mkdir -p ~/.config/gtk-3.0
+    mkdir -p ~/.config/rofi
 
     cp "${ASS_DIR}/i3-conf.sh"          "$HOME/.config/i3/config"
     cp "${ASS_DIR}/alacritty-conf.toml" "$HOME/.config/alacritty/alacritty.toml"
@@ -116,7 +118,11 @@ config_link() {
     cp "${ASS_DIR}/mpd-conf.conf"       "$HOME/.config/mpd/mpd.conf"
     cp "${ASS_DIR}/rmpc-config.ron"     "$HOME/.config/rmpc/config.ron"
     cp "${ASS_DIR}/rmpc-theme.ron"      "$HOME/.config/rmpc/themes/main.ron"
+    cp "${ASS_DIR}/rofi-config.rasi"    "$HOME/.config/rofi/config.rasi"
+    cp "${ASS_DIR}/rmpc-theme.ron"      "$HOME/.config/rmpc/themes/main.ron"
     cp "${ASS_DIR}/gtk-settings.ini"    "$HOME/.config/gtk-3.0/settings.ini"
+
+    ln -sf /run/media/faction/KINGSTON/Music Music
 
     DI_CONFIG_LINK_OKAY=1
     save_progress
@@ -144,8 +150,8 @@ git_config() {
     echo '======== setting up git ========'
     DI_GIT_CONFIG_OKAY=0
 
-    git config --global user.name "faction0"
-    git config --global user.email "faction0@protonmail.com"
+    git config --global user.name "faction"
+    git config --global user.email "me@faction.im"
     git config --global init.defaultBranch "main"
 
     DI_GIT_CONFIG_OKAY=1
@@ -155,5 +161,21 @@ git_config() {
 
 [[ $DI_GIT_CONFIG_OKAY -eq 1 ]] || git_config
 
+extra_packages() {
+    echo '======== extra packages. ========'
+    echo 'remember to install steam now because thank and fuck you nvidia'
+    DI_EXTRA_PACK_OKAY=0
+
+    flatpak install com.github.dynobo.normcap com.saivert.pwvucontrol
+    
+    DI_EXTRA_PACK_OKAY=1
+    save_progress
+    echo -e "okay\n"
+}
+
+[[ $DI_EXTRA_PACK_OKAY -eq 1 ]] || extra_packages
+
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+xdg-settings set default-web-browser waterfox.desktop
 
 

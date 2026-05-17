@@ -14,6 +14,8 @@ user_pref("browser.newtabpage.activity-stream.showTopSites"  , false);
 user_pref('signon.showAutoCompleteFooter', false);
 user_pref('signon.firefoxRelay.feature', 'unavailable');
 
+// fuck the sidebar
+user_pref('sidebar.revamp', false);
 
 // others
 user_pref('browser.startup.homepage', 'about:blank');

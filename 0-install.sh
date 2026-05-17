@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo "unplug kingston then press enter"
+read miau
+
+fdisk -l
+
 echo -n "Target disk: /dev/"
 read INSTALL_TARGET
 
@@ -33,17 +38,30 @@ pacstrap -K /mnt base base-devel linux linux-firmware linux-headers \
     rmpc mpd pipewire pipewire-pulse pipewire-alsa wireplumber \
     ttf-roboto ttf-roboto-mono noto-fonts noto-fonts-cjk noto-fonts-emoji \
     qemu-full virt-manager \
-    networkmanager dunst xdg-desktop-portal-gnome\
-    libreoffice-still gimp rofi \
-    feh nemo nnn neovim \
-    flatpak locate \
-    xorg-server xorg-xinit xorg-xrandr xorg-xinput xorg-xkill i3
+    networkmanager dunst xdg-desktop-portal-gnome kleopatra\
+    libreoffice-still gimp keepassxc obsidian inkscape prismlauncher\
+    tenacity \
+    feh nemo nnn neovim flameshot\
+    flatpak locate alacritty tmux\
+    xorg-server xorg-xinit xorg-xrandr xorg-xinput xorg-xkill i3 rofi wmctrl \
+    fcitx5 fcitx5-mozc fcitx5-configtool
 
 echo "======== genfstab ========"
+
+echo "plug in kingston then press enter"
+read miau
+
+fdisk -l
+
+echo -n "Kingston partition? : /dev/"
+read kingston
+
+mount -v --mkdir "/dev/${kingston}" /mnt/run/media/faction/KINGSTON
+
 genfstab -U /mnt > /mnt/etc/fstab
 
 echo "======== copying dotfiles into installed system ========"
-cp -v /root/.dotfiles /mnt/root/
+cp -vr /root/.dotfiles /mnt/root/
 
 echo "ok. now chroot and run /root/.dotfiles/1-chroot.sh"
 
