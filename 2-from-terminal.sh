@@ -163,11 +163,11 @@ git_config() {
 
 extra_packages() {
     echo '======== extra packages. ========'
-    echo 'remember to install steam now because thank and fuck you nvidia'
+    echo 'install steam now because thank and fuck you nvidia'
     DI_EXTRA_PACK_OKAY=0
 
     flatpak install com.github.dynobo.normcap com.saivert.pwvucontrol
-    
+
     DI_EXTRA_PACK_OKAY=1
     save_progress
     echo -e "okay\n"
