@@ -6,7 +6,7 @@ set $sound_handler exec --no-startup-id ~/.dotfiles/assets/scripts/sound-handler
 client.focused          #616161 #616161 #f0f0f0 #aaaaaa   #616161
 client.focused_inactive #121212 #121212 #626262 #343434   #121212
 client.unfocused        #121212 #121212 #626262 #343434   #121212
-client.urgent           #7F58D3 #7F58D3 #FFFFFF #900000   #7F58D3
+client.urgent           #E3E3E3 #E3E3E3 #474747 #000000   #E3E3E3
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 client.background       #000000
