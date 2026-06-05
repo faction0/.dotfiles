@@ -48,6 +48,11 @@ if [ -d "$xinitdir"/xinitrc.d ] ; then
 	unset f
 fi
 
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export GLFW_IM_MODULE=fcitx
+
 fcitx5 &
 exec i3
 
