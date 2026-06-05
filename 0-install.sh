@@ -5,7 +5,7 @@ read miau
 
 fdisk -l
 
-echo -n "Target disk: /dev/"
+echo -n "Target DISK: /dev/"
 read INSTALL_TARGET
 
 echo "using /dev/$INSTALL_TARGET"
@@ -24,7 +24,7 @@ read miau
 echo "======== mkfs.fat ========"
 mkfs.fat -F 32 "/dev/${INSTALL_TARGET}1"
 
-echo "======== mkfs.btrfs ========"
+echo "======== mkfs.ext4 ========"
 mkfs.ext4 "/dev/${INSTALL_TARGET}2"
 
 echo "======== mounting ========"
@@ -37,14 +37,15 @@ pacstrap -K /mnt base base-devel linux linux-firmware linux-headers \
     git p7zip \
     rmpc mpd pipewire pipewire-pulse pipewire-alsa wireplumber \
     ttf-roboto ttf-roboto-mono noto-fonts noto-fonts-cjk noto-fonts-emoji \
-    qemu-full virt-manager \
+    qemu-full virt-manager dnsmasq \
     networkmanager dunst xdg-desktop-portal-gnome kleopatra\
     libreoffice-still gimp keepassxc obsidian inkscape prismlauncher\
     tenacity \
     feh nemo nnn neovim flameshot\
     flatpak locate alacritty tmux\
     xorg-server xorg-xinit xorg-xrandr xorg-xinput xorg-xkill i3 rofi wmctrl \
-    fcitx5 fcitx5-mozc fcitx5-configtool
+    fcitx5 fcitx5-mozc fcitx5-configtool \
+    xdotool xclip
 
 echo "======== genfstab ========"
 
@@ -53,7 +54,7 @@ read miau
 
 fdisk -l
 
-echo -n "Kingston partition? : /dev/"
+echo -n "Kingston PARTITION? : /dev/"
 read kingston
 
 mount -v --mkdir "/dev/${kingston}" /mnt/run/media/faction/KINGSTON
