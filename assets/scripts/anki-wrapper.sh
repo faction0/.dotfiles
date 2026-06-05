@@ -1,0 +1,3 @@
+#!/bin/bash
+
+flatpak run net.ankiweb.Anki "$@"

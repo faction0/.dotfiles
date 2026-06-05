@@ -27,9 +27,11 @@ echo "======== copying root files ========"
 
 cp "${DF_ASS}/scripts/sound-handler.sh"        /bin/df-sound-launcher
 cp "${DF_ASS}/scripts/pwvucontrol-wrapper.sh"  /bin/pwvucontrol
+cp "${DF_ASS}/scripts/anki-wrapper.sh"         /bin/anki
 
 chmod +x /bin/df-sound-launcher
 chmod +x /bin/pwvucontrol
+chmod +x /bin/anki-wrapper.sh
 
 cp "${DF_ASS}/grub-default.cfg" /etc/default/grub
 cp "${DF_ASS}/timesyncd.conf"   /etc/systemd/timesyncd.conf

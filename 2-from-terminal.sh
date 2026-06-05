@@ -167,6 +167,9 @@ extra_packages() {
     DI_EXTRA_PACK_OKAY=0
 
     flatpak install com.github.dynobo.normcap com.saivert.pwvucontrol
+    flatpak install flathub net.ankiweb.Anki
+    flatpak override --user --env=QT_IM_MODULE=fcitx net.ankiweb.Anki
+    flatpak override --user --talk-name=org.fcitx.Fcitx5 net.ankiweb.Anki
 
     DI_EXTRA_PACK_OKAY=1
     save_progress
