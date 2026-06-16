@@ -43,9 +43,6 @@ cp "${DF_ASS}/opensnitchd-default.json" /etc/opensnitchd/default-config.json
 
 cp "${DF_ASS}/rofi-theme.rasi"  /usr/share/rofi/themes/gray.rasi
 
-7z x "${DF_ASS}/0xProto.7z"    "-o/usr/share/fonts/"
-7z x "${DF_ASS}/CommitMono.7z" "-o/usr/share/fonts/"
-
 echo "======== setting up grub ========"
 
 mkdir -p /boot/EFI/Arch

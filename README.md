@@ -6,11 +6,6 @@
 - ./assets/wallpaper.jpg : https://hdqwalls.com/wallpaper/2560x1080/metal-abstract-purple
 - ./assets/wallpaper-locked.png : 98% a* generated, text fixed manually
 
-### fonts
-- 0xProto : https://www.nerdfonts.com/font-downloads
-- CommitMono : https://www.nerdfonts.com/font-downloads
-- FiraMono: https://www.nerdfonts.com/font-downloads
-
 ### sound sources
 
 - https://pixabay.com/users/u_o8xh7gwsrj-54433977/

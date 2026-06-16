@@ -36,7 +36,7 @@ pacstrap -K /mnt base base-devel linux linux-firmware linux-headers \
     grub efibootmgr \
     git p7zip \
     rmpc mpd pipewire pipewire-pulse pipewire-alsa wireplumber \
-    ttf-roboto ttf-roboto-mono noto-fonts noto-fonts-cjk noto-fonts-emoji \
+    ttf-roboto ttf-roboto-mono noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-0xproto-nerd otf-commit-mono-nerd otf-firamono-nerd\
     qemu-full virt-manager dnsmasq \
     networkmanager dunst xdg-desktop-portal-gnome kleopatra \
     libreoffice-still gimp keepassxc obsidian inkscape prismlauncher\
