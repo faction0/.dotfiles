@@ -38,8 +38,11 @@ cp "${DF_ASS}/timesyncd.conf"   /etc/systemd/timesyncd.conf
 cp "${DF_ASS}/xinitrc.sh"       /etc/X11/xinit/xinitrc
 cp "${DF_ASS}/xorg.conf"        /etc/X11/xorg.conf
 
-mkdir /etc/opensnitchd
+mkdir -p /etc/opensnitchd
 cp "${DF_ASS}/opensnitchd-default.json" /etc/opensnitchd/default-config.json
+
+mkdir -p /etc/systemd/coredump.conf.d/
+cp "${DF_ASS}/coredump-disable.conf" /etc/systemd/coredump.conf.d/disable.conf
 
 cp "${DF_ASS}/rofi-theme.rasi"  /usr/share/rofi/themes/gray.rasi
 
