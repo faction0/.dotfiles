@@ -35,7 +35,7 @@ bindsym $mod+Shift+e exec --no-startup-id nemo
 bindsym $mod+equal $sound_handler i3 lock
 bindsym $mod+l $sound_handler clear-notifications
 bindsym $mod+Control+v exec --no-startup-id xclip -selection clipboard -out | xdotool selectwindow windowfocus type --delay 1 --clearmodifiers --window %@ --file -
-bindsym $mod+Control+s exec --no-startup-id flameshot gui
+bindsym $mod+Control+s exec --no-startup-id scrot -s -f -o '/dev/stdout' | xclip -selection clipboard -t image/png
 
 bindsym $mod+Control+x exec --no-startup-id flatpak run com.github.dynobo.normcap -l jpn -c "#ffffff"
 
@@ -98,7 +98,6 @@ bindsym $mod+Shift+m exec "i3-nagbar -t warning -m 'moo' -B 'yes, moo' 'i3-msg e
 # Add these to the end of your ~/.config/i3/config
 exec --no-startup-id i3-msg 'workspace s'
 
-for_window [class="Portmaster"] move to workspace z
 for_window [class="steam"] move to workspace z
 for_window [class="vscodium"] move to workspace c
 for_window [class="vesktop"] move to workspace x

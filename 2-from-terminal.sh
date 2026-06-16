@@ -56,8 +56,9 @@ yogurt() {
         command -v yay >/dev/null || die
     fi
     
-    yay -S --needed portmaster-bin vscodium-bin vesktop-bin brave-bin \
-        nvidia-580xx-utils nvidia-580xx-dkms nvidia-580xx-settings lib32-nvidia-580xx-utils
+    yay -S --needed vscodium-bin vesktop-bin waterfox-bin \
+        nvidia-580xx-utils nvidia-580xx-dkms nvidia-580xx-settings lib32-nvidia-580xx-utils \
+        kora-icon-theme
 
     DI_YOGURT_OKAY=1
     save_progress
@@ -105,9 +106,9 @@ config_link() {
     mkdir -p ~/.config/alacritty
     mkdir -p ~/.config/dunst
     mkdir -p ~/.config/mpd
-    mkdir -p ~/.config/rmpc
     mkdir -p ~/.config/rmpc/themes
     mkdir -p ~/.config/gtk-3.0
+    mkdir -p ~/.config/gtk-4.0
     mkdir -p ~/.config/rofi
 
     cp "${ASS_DIR}/i3-conf.sh"          "$HOME/.config/i3/config"
@@ -119,10 +120,10 @@ config_link() {
     cp "${ASS_DIR}/rmpc-config.ron"     "$HOME/.config/rmpc/config.ron"
     cp "${ASS_DIR}/rmpc-theme.ron"      "$HOME/.config/rmpc/themes/main.ron"
     cp "${ASS_DIR}/rofi-config.rasi"    "$HOME/.config/rofi/config.rasi"
-    cp "${ASS_DIR}/rmpc-theme.ron"      "$HOME/.config/rmpc/themes/main.ron"
     cp "${ASS_DIR}/gtk-settings.ini"    "$HOME/.config/gtk-3.0/settings.ini"
+    cp "${ASS_DIR}/gtk-settings.ini"    "$HOME/.config/gtk-4.0/settings.ini"
 
-    ln -sf /run/media/faction/KINGSTON/Music Music
+    ln -sf /run/media/faction/KINGSTON/Music ~/Music
 
     DI_CONFIG_LINK_OKAY=1
     save_progress
@@ -135,7 +136,6 @@ service_enabling() {
     echo '======== service enabling ========'
     DI_SERVICE_ENABLING_OKAY=0
 
-    systemctl enable --now portmaster
     systemctl --user enable --now pipewire
     systemctl --user enable --now pipewire-pulse
 
@@ -178,7 +178,11 @@ extra_packages() {
 
 [[ $DI_EXTRA_PACK_OKAY -eq 1 ]] || extra_packages
 
+mkdir -p ~/Documents
+
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+
 xdg-settings set default-web-browser waterfox.desktop
 
 

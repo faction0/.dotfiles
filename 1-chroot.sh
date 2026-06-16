@@ -25,17 +25,18 @@ chown -hR faction /home/faction/.dotfiles
 
 echo "======== copying root files ========"
 
-cp "${DF_ASS}/scripts/sound-handler.sh"        /bin/df-sound-launcher
+cp "${DF_ASS}/scripts/sound-launcher.sh"       /bin/df-sound-launcher
 cp "${DF_ASS}/scripts/pwvucontrol-wrapper.sh"  /bin/pwvucontrol
 cp "${DF_ASS}/scripts/anki-wrapper.sh"         /bin/anki
 
 chmod +x /bin/df-sound-launcher
 chmod +x /bin/pwvucontrol
-chmod +x /bin/anki-wrapper.sh
+chmod +x /bin/anki
 
 cp "${DF_ASS}/grub-default.cfg" /etc/default/grub
 cp "${DF_ASS}/timesyncd.conf"   /etc/systemd/timesyncd.conf
 cp "${DF_ASS}/xinitrc.sh"       /etc/X11/xinit/xinitrc
+cp "${DF_ASS}/xorg.conf"        /etc/X11/xorg.conf
 
 cp "${DF_ASS}/rofi-theme.rasi"  /usr/share/rofi/themes/gray.rasi
 
@@ -63,6 +64,7 @@ read i_hostname
 echo "$i_hostname" > /etc/hostname
 
 systemctl enable NetworkManager
+systemctl enable opensnitchd
 
 echo "======== fuckass pacman key issues ========"
 

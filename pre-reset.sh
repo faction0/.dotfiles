@@ -3,9 +3,6 @@
 echo "minecraft instance"
 read miau
 
-echo "borderlands 2"
-read miau
-
 echo "obsidian"
 read miau
 
@@ -28,6 +25,9 @@ echo "nfsmw"
 read miau
 
 echo "coding"
+read miau
+
+echo "gpg"
 read miau
 
 echo "happy formatting"

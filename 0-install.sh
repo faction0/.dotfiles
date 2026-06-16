@@ -38,14 +38,14 @@ pacstrap -K /mnt base base-devel linux linux-firmware linux-headers \
     rmpc mpd pipewire pipewire-pulse pipewire-alsa wireplumber \
     ttf-roboto ttf-roboto-mono noto-fonts noto-fonts-cjk noto-fonts-emoji \
     qemu-full virt-manager dnsmasq \
-    networkmanager dunst xdg-desktop-portal-gnome kleopatra\
+    networkmanager dunst xdg-desktop-portal-gnome kleopatra \
     libreoffice-still gimp keepassxc obsidian inkscape prismlauncher\
-    tenacity \
-    feh nemo nnn neovim flameshot\
-    flatpak locate alacritty tmux\
+    tenacity torbrowser-launcher opensnitch qt5ct\
+    feh nemo nnn neovim python-qt-material scrot \
+    flatpak locate alacritty tmux \
     xorg-server xorg-xinit xorg-xrandr xorg-xinput xorg-xkill i3 rofi wmctrl \
     fcitx5 fcitx5-mozc fcitx5-configtool \
-    xdotool xclip
+    xdotool xclip less
 
 echo "======== genfstab ========"
 
