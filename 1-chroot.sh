@@ -38,6 +38,9 @@ cp "${DF_ASS}/timesyncd.conf"   /etc/systemd/timesyncd.conf
 cp "${DF_ASS}/xinitrc.sh"       /etc/X11/xinit/xinitrc
 cp "${DF_ASS}/xorg.conf"        /etc/X11/xorg.conf
 
+mkdir /etc/opensnitchd
+cp "${DF_ASS}/opensnitchd-default.json" /etc/opensnitchd/default-config.json
+
 cp "${DF_ASS}/rofi-theme.rasi"  /usr/share/rofi/themes/gray.rasi
 
 7z x "${DF_ASS}/0xProto.7z"    "-o/usr/share/fonts/"
