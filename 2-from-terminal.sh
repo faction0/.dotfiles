@@ -114,6 +114,7 @@ config_link() {
     mkdir -p ~/.config/gtk-4.0
     mkdir -p ~/.config/rofi
     mkdir -p ~/.config/keepassxc
+    mkdir -p ~/.config/wireplumber/wireplumber.conf.d/
 
     cp "${ASS_DIR}/i3-conf.sh"          "$HOME/.config/i3/config"
     cp "${ASS_DIR}/alacritty-conf.toml" "$HOME/.config/alacritty/alacritty.toml"
@@ -127,6 +128,7 @@ config_link() {
     cp "${ASS_DIR}/gtk-settings.ini"    "$HOME/.config/gtk-3.0/settings.ini"
     cp "${ASS_DIR}/gtk-settings.ini"    "$HOME/.config/gtk-4.0/settings.ini"
     cp "${ASS_DIR}/kxc.ini"             "$HOME/.config/keepassxc/keepassxc.ini"
+    cp "${ASS_DIR}/disable-agc.conf"    "$HOME/.config/wireplumber/wireplumber.conf.d/disable-agc.conf"
 
     ln -sf /run/media/faction/KINGSTON/Music ~/Music
 
