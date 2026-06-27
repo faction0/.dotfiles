@@ -102,6 +102,9 @@ config_link() {
     echo '======== config linking ========'
     DI_CONFIG_LINK_OKAY=0
 
+    mkdir -p ~/Documents
+    mkdir -p ~/Music_Local
+
     mkdir -p ~/.config/i3
     mkdir -p ~/.config/alacritty
     mkdir -p ~/.config/dunst
@@ -180,11 +183,7 @@ extra_packages() {
 
 [[ $DI_EXTRA_PACK_OKAY -eq 1 ]] || extra_packages
 
-mkdir -p ~/Documents
-
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
 xdg-settings set default-web-browser waterfox.desktop
-
-

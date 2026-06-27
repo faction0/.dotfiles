@@ -27,6 +27,9 @@ read miau
 echo "coding"
 read miau
 
+echo "mpd"
+read miau
+
 echo "gpg"
 read miau
 
