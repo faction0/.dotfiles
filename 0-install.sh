@@ -45,7 +45,7 @@ pacstrap -K /mnt base base-devel linux linux-firmware linux-headers \
     flatpak locate alacritty tmux \
     xorg-server xorg-xinit xorg-xrandr xorg-xinput xorg-xkill i3 rofi wmctrl \
     fcitx5 fcitx5-mozc fcitx5-configtool \
-    xdotool xclip less
+    xdotool xclip less fuse2 cava ueberzugpp
 
 echo "======== genfstab ========"
 

@@ -15,7 +15,7 @@ read miau
 echo "stardew mods"
 read miau
 
-echo "stylus"
+echo "greasemonkey"
 read miau
 
 echo "gd cloud save"
