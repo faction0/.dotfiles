@@ -3,13 +3,7 @@
 echo "minecraft instance"
 read miau
 
-echo "obsidian"
-read miau
-
 echo "keepass"
-read miau
-
-echo "homework"
 read miau
 
 echo "stardew mods"
