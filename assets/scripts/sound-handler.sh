@@ -81,6 +81,11 @@ case "$1" in
     df-sound-launcher 40000 clear-notif.mp3 &
   ;;
 
+  "audio-orientation")
+    df-sound-launcher 70000 left.wav &
+    df-sound-launcher 70000 right.wav &
+  ;;
+
   "nuke")
 
     case "$2" in

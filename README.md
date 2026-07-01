@@ -18,6 +18,7 @@
 - https://www.youtube.com/watch?v=eAoR4h6SQGg
 - https://www.youtube.com/watch?v=7olVDwbX8ao
 - https://www.youtube.com/shorts/IY_Gq8flnSw
+- https://www.vocalware.com/index/demo | audio for left and right test. (spanish, jorge)
 
 ### helpful stuff i used
 - i3 colors helper: https://thomashunter.name/i3-configurator/

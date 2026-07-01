@@ -33,7 +33,10 @@ bindsym $mod+Control+e exec --no-startup-id alacritty -e bash -lc nnn
 bindsym $mod+Shift+e exec --no-startup-id nemo
 
 bindsym $mod+equal $sound_handler i3 lock
+
 bindsym $mod+l $sound_handler clear-notifications
+bindsym $mod+k $sound_handler audio-orientation
+
 bindsym $mod+Control+v exec --no-startup-id xclip -selection clipboard -out | xdotool selectwindow windowfocus type --delay 1 --clearmodifiers --window %@ --file -
 bindsym $mod+Control+s exec --no-startup-id scrot -s -f -o '/dev/stdout' | xclip -selection clipboard -t image/png
 
